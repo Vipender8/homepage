@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <title>My Webpage</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Meet Vipender Yadav!</h1>
+            <div class="home">
+                <a href="index.html" class="btn btn-primary">Home</a>
+            </div>
+
+        </div>
+
+        <div class="container col-xxl-8 px-4 py-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img class="round-image" alt="Photo of Vipender Yadav" src="Vipender_photo.JPG">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="display-6 fw-bold text-body-emphasis lh-1 mb-3">This is Vipender Yadav!</h2>
+                    <p class="lead">— a Mechanical Engineering graduate with a strong foundation in STEM education and a
+                        growing passion for computer science and AI.
+                        <span id="dots" class="dots">...</span>
+                        <span id="longPart" class="hidden">After earning my B.Tech, I worked as a Subject Matter Expert with one of India’s leading e-learning companies,
+                        then expanded my reach through freelancing for renowned global platforms like Chegg, StudyMode, Straive, and Numerade.I also run <a href="https://www.youtube.com/@stembaba">STEMbaba</a>,
+                        a YouTube channel with over <strong>200 videos</strong> simplifying maths and physics for students worldwide.
+                            Currently, I’m completing <span class="highlight">Harvard’s CS50:</span> Introduction to Computer Science, and I’m excited to be stepping into the world of AI engineering next.</span>
+                    </p>
+                    <button id="toggleBtn" onclick="toggleText()" type="button" class="btn btn-secondary btn-lg px-4 me-md-2">Read More</button>
+                </div>
+            </div>
+        </div>
+
+       <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3 class="title">HOBBIES</h3>
+                                <p class="card-text">My favorite ways to relax and have fun.</p>
+                                <a href="hobbies.html" class="btn btn-primary">Click Here</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card h-100">
+                                <div class="card-body">
+                                <h3 class="title">WORK EXPERIENCE</h3>
+                                <p class="card-text">My professional journey and the skills I've gained.</p>
+                                <a href="work.html" class="btn btn-primary">Click Here</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="card h-100">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="title">CONTACT ME</h3>
+                                <p class="card-text">Let's connect and discuss collaborations or opportunities.</p>
+                                <a href="Contact.html" class="btn btn-primary">Click Here</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+       </div>
+
+       <script>
+        function toggleText(){
+            let longPart = document.getElementById("longPart");
+            let button = document.getElementById("toggleBtn");
+            let dots = document.getElementById("dots")
+
+                if(longPart.classList.contains("hidden")){
+                longPart.classList.remove("hidden");
+                button.textContent = "Read Less";
+                dots.classList.add("hidden");
+            }else{
+                longPart.classList.add("hidden");
+                button.textContent = "Read More";
+                dots.classList.remove("hidden");
+            }
+        }
+       </script>
+    </body>
+</html>
