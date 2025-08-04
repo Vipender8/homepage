@@ -1,0 +1,35 @@
+HTML tags used:
+<p>
+<div>
+<img>
+<button>
+<span>
+<h1>
+<h2>
+<h3>
+<a>
+<ul>
+<li>
+<strong>
+
+
+CSS Properties:
+.round-image
+.hidden
+.dots
+.highlight
+.work-header
+.home
+.social-icons
+.social-icons a
+
+bootstrao:
+I used the container class of bootstrap to create row and column.
+
+
+JavaScript:
+First I selected elements with ids( dots, longPart, toggleBtn) usind getElementById method of JavaScript. Also I defined class called ".hidden" and define its
+property in style.css. Now whenever Read More is clicked toggleText function will be called.
+Now let's see how I defined toggleText function in script tag.
+
+First I defined variables and then if else logic, so that user can see the effect of clicking on the button Read Me.
