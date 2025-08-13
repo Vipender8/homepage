@@ -1,99 +1,569 @@
 <!DOCTYPE html>
-
 <html lang="en">
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <link href="styles.css" rel="stylesheet">
-        <title>My Webpage</title>
-    </head>
-    <body>
-        <div class="header">
-            <h1>Meet Vipender Yadav!</h1>
-            <div class="home">
-                <a href="index.html" class="btn btn-primary">Home</a>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vipender Yadav - AI Engineer | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        </div>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
 
-        <div class="container col-xxl-8 px-4 py-5">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6">
-                    <img class="round-image" alt="Photo of Vipender Yadav" src="Vipender_photo.JPG">
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="display-6 fw-bold text-body-emphasis lh-1 mb-3">This is Vipender Yadav!</h2>
-                    <p class="lead">— a Mechanical Engineering graduate with a strong foundation in STEM education and a
-                        growing passion for computer science and AI.
-                        <span id="dots" class="dots">...</span>
-                        <span id="longPart" class="hidden">After earning my B.Tech, I worked as a Subject Matter Expert with one of India’s leading e-learning companies,
-                        then expanded my reach through freelancing for renowned global platforms like Chegg, StudyMode, Straive, and Numerade.I also run <a href="https://www.youtube.com/@stembaba">STEMbaba</a>,
-                        a YouTube channel with over <strong>200 videos</strong> simplifying maths and physics for students worldwide.
-                            Currently, I’m completing <span class="highlight">Harvard’s CS50:</span> Introduction to Computer Science, and I’m excited to be stepping into the world of AI engineering next.</span>
-                    </p>
-                    <button id="toggleBtn" onclick="toggleText()" type="button" class="btn btn-secondary btn-lg px-4 me-md-2">Read More</button>
-                </div>
-            </div>
-        </div>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-       <div class="container mt-5">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h3 class="title">HOBBIES</h3>
-                                <p class="card-text">My favorite ways to relax and have fun.</p>
-                                <a href="hobbies.html" class="btn btn-primary">Click Here</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            background-size: 300% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
 
-                <div class="col-4">
-                    <div class="card">
-                        <div class="card h-100">
-                                <div class="card-body">
-                                <h3 class="title">WORK EXPERIENCE</h3>
-                                <p class="card-text">My professional journey and the skills I've gained.</p>
-                                <a href="work.html" class="btn btn-primary">Click Here</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
 
-                <div class="col-4">
-                    <div class="card h-100">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="title">CONTACT ME</h3>
-                                <p class="card-text">Let's connect and discuss collaborations or opportunities.</p>
-                                <a href="Contact.html" class="btn btn-primary">Click Here</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-            </div>
-       </div>
+        .header .subtitle {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 20px;
+        }
 
-       <script>
-        function toggleText(){
-            let longPart = document.getElementById("longPart");
-            let button = document.getElementById("toggleBtn");
-            let dots = document.getElementById("dots")
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
 
-                if(longPart.classList.contains("hidden")){
-                longPart.classList.remove("hidden");
-                button.textContent = "Read Less";
-                dots.classList.add("hidden");
-            }else{
-                longPart.classList.add("hidden");
-                button.textContent = "Read More";
-                dots.classList.remove("hidden");
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #667eea;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .skill-category h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .experience-item, .education-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            position: relative;
+        }
+
+        .experience-item h3, .education-item h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .company, .institution {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .duration {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .project {
+            background: linear-gradient(135deg, #667eea10, #764ba210);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .project h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .project-links {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .summary-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+        }
+
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .hobby-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .hobby-item h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .floating-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 20px;
+            margin: 2px 0;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .nav-item:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .floating-nav {
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .skills-grid, .hobbies-grid {
+                grid-template-columns: 1fr;
             }
         }
-       </script>
-    </body>
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <nav class="floating-nav">
+        <a href="#about" class="nav-item">About</a>
+        <a href="#skills" class="nav-item">Skills</a>
+        <a href="#experience" class="nav-item">Experience</a>
+        <a href="#projects" class="nav-item">Projects</a>
+        <a href="#education" class="nav-item">Education</a>
+        <a href="#hobbies" class="nav-item">Hobbies</a>
+    </nav>
+
+    <div class="container">
+        <header class="header fade-in">
+            <h1>Vipender Yadav</h1>
+            <p class="subtitle">AI Engineer | Content Creator | Freelance Educator</p>
+            <div class="contact-info">
+                <a href="mailto:vipenderyadav1@gmail.com" class="contact-item">
+                    📧 vipenderyadav1@gmail.com
+                </a>
+                <a href="https://linkedin.com/in/vipenderyadav" class="contact-item">
+                    💼 LinkedIn
+                </a>
+                <span class="contact-item">
+                    📍 New Delhi, India
+                </span>
+                <a href="tel:+919968033234" class="contact-item">
+                    📱 +91 9968033234
+                </a>
+            </div>
+        </header>
+
+        <section id="about" class="section fade-in">
+            <h2>Professional Summary</h2>
+            <p class="summary-text">
+                Mechanical engineer turned AI enthusiast with a strong foundation in computer science, AI, and educational content creation. After earning my B.Tech in Mechanical Engineering, I worked as a Subject Matter Expert with leading e-learning companies and expanded my reach through freelancing for renowned global platforms like Chegg, StudyMode, Straive, and Numerade. I also run STEMbaba, a YouTube channel with over 200 videos simplifying maths and physics for students worldwide.
+            </p>
+            <p class="summary-text">
+                I have completed Harvard's CS50: Introduction to Computer Science and developed a full-stack AI-based learning platform with a chatbot, n-gram model, and video search functionality. With over 5 years of experience creating 200+ educational YouTube videos and 5,000+ freelance videos, I'm passionate about combining technology with education. Currently stepping into the world of AI engineering with expertise in Flask, Python, SQL, HTML/CSS/JS, and AI concepts.
+            </p>
+        </section>
+
+        <section id="skills" class="section fade-in">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Frameworks & Tools</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">Jinja2</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">SQLite</span>
+                        <span class="skill-tag">Bootstrap</span>
+                        <span class="skill-tag">CS50 Library</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>AI/ML & Data</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">N-gram Model</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">Conversational AI</span>
+                        <span class="skill-tag">Machine Learning</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Content Creation</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Filmora</span>
+                        <span class="skill-tag">Movavi Video Editor</span>
+                        <span class="skill-tag">YouTube</span>
+                        <span class="skill-tag">Educational Content</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section fade-in">
+            <h2>Professional Experience</h2>
+            
+            <div class="experience-item">
+                <h3>Educator</h3>
+                <div class="company">Numerade</div>
+                <div class="duration">March 2020 - April 2025 | Remote</div>
+                <p>Explained complex STEM concepts through visual storytelling and created over 5000+ short educational videos, helping students worldwide understand physics and mathematics concepts.</p>
+            </div>
+            
+            <div class="experience-item">
+                <h3>Video Content Creator</h3>
+                <div class="company">YouTube (STEMbaba Channel)</div>
+                <div class="duration">March 2020 - April 2024 | Remote</div>
+                <p>Produced over 200 educational YouTube videos, edited videos using Filmora and Movavi, and built a community of learners interested in STEM subjects.</p>
+            </div>
+            
+            <div class="experience-item">
+                <h3>Subject Matter Expert</h3>
+                <div class="company">Acadecraft</div>
+                <div class="duration">February 2019 - June 2020 | Remote</div>
+                <p>Worked as an SME and solved problems related to mechanical engineering, contributing to educational content development for technical subjects.</p>
+            </div>
+            
+            <div class="experience-item">
+                <h3>Freelancer</h3>
+                <div class="company">StudyMode, Chegg, Straive</div>
+                <div class="duration">2020 - Present | Remote</div>
+                <p>Worked on educational content development for STEM subjects, solved and explained problems in Physics and Math, delivering high-quality solutions under tight deadlines.</p>
+            </div>
+        </section>
+
+        <section id="projects" class="section fade-in">
+            <h2>Featured Projects</h2>
+            
+            <div class="project">
+                <h3>AI-Powered Educational Platform</h3>
+                <p><strong>CS50 Final Project</strong></p>
+                <p>Developed a comprehensive full-stack web application using Flask, SQLite, and Jinja2 that combines education with AI technology. The platform features a custom chatbot with Q&A history, an n-gram-based predictive text generator for enhanced user interaction, autocomplete search functionality, organized video playlists, and secure user authentication system.</p>
+                <p><strong>Key Technologies:</strong> Python, Flask, SQLite, HTML/CSS/JavaScript, AI/ML</p>
+                <div class="project-links">
+                    <a href="https://vipender8.github.io/homepage/index.html" class="project-link">🌐 Live Portfolio</a>
+                    <a href="https://www.youtube.com/watch?v=NO_-yej2nWg" class="project-link">🎥 Project Demo</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section fade-in">
+            <h2>Education & Certifications</h2>
+            
+            <div class="education-item">
+                <h3>CS50x: Introduction to Computer Science</h3>
+                <div class="institution">Harvard University</div>
+                <div class="duration">August 2024 - August 2025</div>
+                <p>Completed Harvard's comprehensive computer science course with all problem sets and final project, greatly strengthening programming skills and computer science fundamentals.</p>
+            </div>
+            
+            <div class="education-item">
+                <h3>B.Tech in Mechanical Engineering</h3>
+                <div class="institution">Maharshi Dayanand University (MDU)</div>
+                <div class="duration">July 2012 - July 2016 | Haryana, India</div>
+                <p>Comprehensive engineering education providing strong analytical and problem-solving foundation.</p>
+            </div>
+            
+            <div class="education-item">
+                <h3>Computer Science & Foundational Math</h3>
+                <div class="institution">Brilliant.org</div>
+                <div class="duration">Ongoing</div>
+                <p>Completed all available Computer Science courses with a 180+ day streak, along with Foundational Math courses, demonstrating consistent learning and dedication.</p>
+            </div>
+        </section>
+
+        <section id="hobbies" class="section fade-in">
+            <h2>Interests & Hobbies</h2>
+            <div class="hobbies-grid">
+                <div class="hobby-item">
+                    <h4>🧘‍♂️ Yoga & Wellness</h4>
+                    <p>I find peace and strength through yoga. It's not just about flexibility; it helps me clear my mind and stay grounded, bringing a sense of calm to my daily life and work.</p>
+                </div>
+                
+                <div class="hobby-item">
+                    <h4>🚴‍♂️ Cycling Adventures</h4>
+                    <p>Cycling has been an incredible journey for me, starting with short 2km rides and steadily building up to achieving 100km in a single day. My bike became my favorite way to explore, taking me from Delhi to Gurugram and allowing me to visit iconic landmarks like Connaught Place, Qutub Minar, and India Gate.</p>
+                </div>
+                
+                <div class="hobby-item">
+                    <h4>♟️ Chess Strategy</h4>
+                    <p>Chess is my go-to mental workout, a game I primarily enjoy on Chess.com. As an intermediate player, I find satisfaction in the strategic depth, constantly pushing my skills. My single-match rating has peaked around 1600, though my average typically stays above 900.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.style.background = '';
+                item.style.color = '#333';
+                if (item.getAttribute('href') === '#' + currentSection) {
+                    item.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                    item.style.color = 'white';
+                }
+            });
+        });
+
+        // Add typing effect to the header
+        function typeWriter(element, text, speed = 100) {
+            element.innerHTML = '';
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect when page loads
+        window.addEventListener('load', function() {
+            const headerTitle = document.querySelector('.header h1');
+            const originalText = headerTitle.textContent;
+            typeWriter(headerTitle, originalText, 80);
+        });
+    </script>
+</body>
 </html>
