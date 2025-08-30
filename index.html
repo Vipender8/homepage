@@ -629,10 +629,10 @@
 
         // Fade in animation on scroll
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            threshold: 0.05,  // Reduced threshold
+            rootMargin: '100px 0px -50px 0px'  // Added top margin to trigger earlier
         };
-
+        
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -640,33 +640,20 @@
                 }
             });
         }, observerOptions);
-
+        
         // Observe all fade-in elements
         document.querySelectorAll('.fade-in').forEach(element => {
             observer.observe(element);
         });
-
-        // Active navigation highlighting
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            const navItems = document.querySelectorAll('.nav-item');
-            
-            let currentSection = '';
-            sections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top <= 100 && rect.bottom >= 100) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
-            
-            navItems.forEach(item => {
-                item.style.background = '';
-                item.style.color = 'var(--text-primary)';
-                if (item.getAttribute('href') === '#' + currentSection) {
-                    item.style.background = 'linear-gradient(135deg, var(--gradient-start), var(--gradient-end))';
-                    item.style.color = 'white';
-                }
-            });
+        
+        // Show first section immediately on page load
+        window.addEventListener('load', function() {
+            // Auto-show the first few sections
+            const firstSections = document.querySelectorAll('.fade-in');
+            if (firstSections.length > 0) {
+                firstSections[0].classList.add('visible'); // Header
+                if (firstSections[1]) firstSections[1].classList.add('visible'); // About section
+            }
         });
 
         // Add typing effect to the header
